@@ -3,14 +3,14 @@
 
 ## AnyKernel setup
 # begin properties
-properties() {
+properties() { '
 kernel.string= Chimera Kernel by rupanshji @ xda-developers
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
 do.cleanuponabort=1
 device.name1=land
-} # end properties
+'; } # end properties
 
 # shell variables
 block=/dev/block/mmcblk0p21;
@@ -38,6 +38,7 @@ dump_boot;
 backup_file init.rc;
 grep "import /init.spectrum.rc" init.rc >/dev/null || sed -i '1,/.*import.*/s/.*import.*/import \/init.spectrum.rc\n&/' init.rc
 insert_line init.rc "init.chim.rc" after "import /init.environ.rc" "import /init.chim.rc\n";
+
 # end ramdisk changes
 
 write_boot;
@@ -54,6 +55,7 @@ if [ ! -d /data/media/Spectrum/profiles ]; then
 fi
 if [ ! -d /data/media/Spectrum/profiles/*.profile ]; then
   ui_print " "; ui_print "Creating empty profile files...";
+o
   touch /data/media/0/Spectrum/profiles/balance.profile;
   touch /data/media/0/Spectrum/profiles/performance.profile;
   touch /data/media/0/Spectrum/profiles/battery.profile;
